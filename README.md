@@ -80,13 +80,13 @@ The project uses Python's built-in `random` module.
 ### 1. Clone the repository
 
 ```bash
-git clone <your-repository-url>
+git clone https://github.com/shweshd/Slot-Machine
 ```
 
 ### 2. Open the project
 
 ```bash
-cd slot-machine
+cd Slot-Machine
 ```
 
 ### 3. Run the program
