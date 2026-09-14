@@ -1,19 +1,22 @@
 # 🎰 Python Slot Machine
 
-A simple command-line **slot machine game built with Python**. The project demonstrates fundamental Python concepts such as functions, loops, dictionaries, lists, random selection, input validation, and basic game logic.
+A simple **slot machine game built with Python and CustomTkinter**. The project demonstrates fundamental Python concepts such as functions, loops, dictionaries, lists, random selection, input validation, object-oriented programming, and basic game logic through a graphical user interface.
 
 ## Features
 
-* Deposit an initial balance
-* Choose how many lines to bet on
-* Place a bet on each selected line
-* Randomly generate a 3×3 slot machine
-* Different symbols have different probabilities and payout values
-* Check winning lines
-* Calculate winnings and total bets
-* Display the current balance
-* Continue playing until the user quits
-* Validate user input and betting limits
+* 💰 Deposit an initial balance
+* 🎯 Choose how many lines to bet on
+* 💵 Place a bet on each selected line
+* 🎰 Generate a random 3×3 slot machine
+* 🔤 Four different symbols with different probabilities and payout values
+* 🏆 Check winning lines
+* 💰 Calculate winnings and total bets
+* 📊 Display the current balance
+* 🔄 Continue playing with the updated balance
+* ❌ Quit the game and display the final balance
+* ⚠️ Validate deposits, betting limits, and available balance
+* 🖥️ Modern graphical interface using CustomTkinter
+* 🌙 Dark-themed interface
 
 ## How the Game Works
 
@@ -26,43 +29,184 @@ The slot machine uses four symbols:
 | C      |     6 |    $3 |
 | D      |     8 |    $2 |
 
-The more frequently a symbol appears in the symbol pool, the more likely it is to be selected.
+The number of times a symbol appears in the symbol pool determines its probability of being selected.
 
-The game has:
+For example, `D` appears more frequently than `A`, so `D` has a higher chance of appearing.
 
-* **3 rows**
-* **3 columns**
-* Maximum **3 betting lines**
-* Minimum bet: **$1**
-* Maximum bet: **$100**
+### Game Settings
 
-## Example
+* **Rows:** 3
+* **Columns:** 3
+* **Maximum betting lines:** 3
+* **Minimum bet per line:** $1
+* **Maximum bet per line:** $100
+
+## Game Flow
+
+The game follows a simple step-by-step process.
+
+### 1. Deposit
+
+When the application starts, enter the amount you want to use as your starting balance.
 
 ```text
-What would you like to deposit? $100
+What would you like to deposit?
 
-Current balance is $100
-Press enter to play (q to quit).
+[ Enter amount ]
 
-Enter the number of lines to bet on (1-3)? 3
-What would you like to bet on each line? $10
+[ Deposit ]
+```
 
-You are betting $10 on 3. Total bet is equal to: $30
+The entered amount becomes your starting balance.
+
+---
+
+### 2. Select Betting Lines
+
+After depositing, choose how many lines you want to bet on.
+
+You can select between:
+
+```text
+1 - 3 lines
+```
+
+The game validates that the number is within the allowed range.
+
+---
+
+### 3. Enter Your Bet
+
+Enter the amount you want to bet **on each line**.
+
+The allowed bet is:
+
+```text
+$1 - $100
+```
+
+The game calculates the total bet using:
+
+```text
+Total Bet = Bet Per Line × Number of Lines
+```
+
+For example:
+
+```text
+Bet per line = $10
+Lines = 3
+
+Total Bet = $10 × 3
+          = $30
+```
+
+The game checks whether your current balance is sufficient before allowing the spin.
+
+---
+
+### 4. Spin
+
+After placing a valid bet, press the **SPIN** button.
+
+The game generates a random 3×3 slot machine:
+
+```text
+┌─────┬─────┬─────┐
+│  A  │  B  │  D  │
+├─────┼─────┼─────┤
+│  A  │  B  │  C  │
+├─────┼─────┼─────┤
+│  A  │  B  │  D  │
+└─────┴─────┴─────┘
+```
+
+---
+
+### 5. Check Winnings
+
+The game checks each selected horizontal line.
+
+For example, if the first line contains:
+
+```text
+A | A | A
+```
+
+it is a winning line.
+
+The payout is calculated using the symbol's value and the bet:
+
+```text
+Winnings = Symbol Value × Bet
+```
+
+If `A` has a value of `$5` and the bet is `$10`:
+
+```text
+$5 × $10 = $50
+```
+
+The winning amount is added to the player's balance.
+
+---
+
+### 6. Play Again
+
+After each spin, the updated balance is displayed.
+
+The **Play Again** button allows the player to start another round without depositing again.
+
+The game returns to the betting-line step:
+
+```text
+Current balance: $220
+
+Enter the number of lines to bet on (1-3)
+```
+
+The process continues until the player quits or runs out of money.
+
+---
+
+### 7. Quit
+
+Press **Quit** to end the game.
+
+The application displays the remaining balance:
+
+```text
+You left with $220
+```
+
+## Example Game
+
+A typical game might look like this:
+
+```text
+Starting Balance: $100
+
+Lines: 3
+Bet per line: $10
+
+Total Bet: $30
 
 A | B | D
 A | B | C
 A | B | D
 
-You won $150.
-You won on lines: 1
+Winnings: $150
+Winning Lines: 1
 
-Current balance is $220
+Updated Balance: $220
 ```
+
+The player can then choose **Play Again** or **Quit**.
 
 ## Project Structure
 
 ```text
-slot-machine/
+Slot-Machine/
 │
 ├── main.py
 └── README.md
@@ -71,76 +215,108 @@ slot-machine/
 ## Requirements
 
 * Python 3.x
-* No external Python libraries are required.
+* CustomTkinter
 
-The project uses Python's built-in `random` module.
+The project uses Python's built-in `random` module for generating the slot-machine results.
 
-## How to Run
+## Installation
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/shweshd/Slot-Machine
+git clone https://github.com/shweshd/Slot-Machine.git
 ```
 
-### 2. Open the project
+### 2. Open the Project
 
 ```bash
 cd Slot-Machine
 ```
 
-### 3. Run the program
+### 3. Install CustomTkinter
+
+```bash
+pip install customtkinter
+```
+
+On some systems:
+
+```bash
+pip3 install customtkinter
+```
+
+### 4. Run the Application
 
 ```bash
 python main.py
 ```
 
-On some systems, you may need:
+On some systems:
 
 ```bash
 python3 main.py
 ```
 
+A graphical slot-machine window will open.
+
 ## Main Functions
-
-### `deposit()`
-
-Gets the starting balance from the user and validates that the amount is greater than zero.
-
-### `get_number_of_lines()`
-
-Asks the user how many lines they want to bet on and ensures the number is between 1 and 3.
-
-### `get_bet()`
-
-Gets the betting amount for each line and checks that it is between the minimum and maximum bet.
-
-### `get_slot_machine_spin()`
-
-Creates the random 3×3 slot machine using the available symbols.
-
-### `print_slot_machine()`
-
-Displays the generated slot machine in a readable format.
 
 ### `check_winnings()`
 
-Checks whether the selected betting lines contain matching symbols and calculates the winnings.
+Checks the selected betting lines for matching symbols and calculates the winnings.
 
-### `spin()`
+```python
+check_winnings(columns, lines, bet, values)
+```
 
-Controls one complete round of the game:
+Returns:
 
-1. Get the number of lines.
-2. Get the bet.
-3. Check the balance.
-4. Generate the slot machine.
-5. Check winnings.
-6. Calculate the result.
+* Total winnings
+* List of winning lines
 
-### `main()`
+---
 
-Runs the main game loop and allows the player to continue playing or quit.
+### `get_slot_machine_spin()`
+
+Generates the random 3×3 slot machine using the available symbols.
+
+```python
+get_slot_machine_spin(rows, cols, symbols)
+```
+
+Returns the generated slot-machine columns.
+
+---
+
+### `process_step()`
+
+Controls the step-by-step betting process in the GUI.
+
+It handles:
+
+1. Deposit
+2. Number of betting lines
+3. Bet amount
+4. Balance validation
+5. Moving the player to the spin stage
+
+---
+
+### `play_spin()`
+
+Generates the slot-machine result, displays it in the GUI, checks winnings, and updates the player's balance.
+
+---
+
+### `play_again()`
+
+Resets the slot display and starts another betting round using the player's current balance.
+
+---
+
+### `quit_game()`
+
+Ends the game and displays the player's remaining balance.
 
 ## Concepts Practiced
 
@@ -159,25 +335,42 @@ This project helped practice:
 * List copying and removal
 * The `random` module
 * Nested loops
+* Object-oriented programming
+* Python classes
+* GUI programming
+* Event-driven programming
+* CustomTkinter widgets
+* Button callbacks
+* Managing GUI state
 * Basic game logic
 
 ## Future Improvements
 
 Possible improvements include:
 
-* Add more symbols
-* Add different winning combinations
-* Add diagonal winning lines
-* Add animations
-* Add colored terminal output
-* Add a betting history
-* Add a maximum number of spins
-* Add sound effects
-* Add a graphical interface using Tkinter
-* Save the player's balance between sessions
+* 🎰 Add slot-spin animations
+* 🔊 Add sound effects
+* 🎨 Add custom symbol graphics
+* 🏆 Add more winning combinations
+* ↘️ Add diagonal winning lines
+* 📈 Add betting history
+* 💾 Save the player's balance between sessions
+* 🪙 Add different coin/balance systems
+* 🎯 Add jackpots
+* 🏅 Add a high-score system
+* ⚙️ Add game settings
+* 🌐 Add online leaderboards
 
 ## Author
 
 **Shwesh Dubey**
 
 This project was created as part of my Python learning and practice projects.
+
+---
+
+### Built With
+
+**Python** • **CustomTkinter** • **Random Module**
+
+---
